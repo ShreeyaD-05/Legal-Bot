@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LegalBot ⚖️ — Multi-Agent Legal Assistant</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⚖️</span>
+        <div>
+          <h1 class="logo-title">LegalBot</h1>
+          <p class="logo-subtitle">Multi-Agent Legal Assistant</p>
+        </div>
+      </div>
+      <div id="health-badge" class="badge badge--loading">Checking…</div>
+    </div>
+  </header>
+
+  <!-- ── Main Layout ─────────────────────────────────────── -->
+  <main class="main">
+
+    <!-- Agent pipeline display -->
+    <section class="pipeline">
+      <div class="pipeline-step">
+        <div class="step-icon">🔍</div>
+        <div class="step-label">Legal Query<br/>Analyzer</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div class="step-icon">📚</div>
+        <div class="step-label">Legal Research<br/>Agent</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div class="step-icon">✅</div>
+        <div class="step-label">Legal Answer<br/>Reviewer</div>
+      </div>
+    </section>
+
+    <!-- Question input card -->
+    <section class="card input-card">
+      <h2 class="card-title">Ask a Legal Question</h2>
+      <p class="card-hint">
+        Ask about tenancy, contracts, employment, intellectual property, or consumer rights.
+      </p>
+
+      <div class="input-group">
+        <textarea
+          id="question-input"
+          class="textarea"
+          rows="4"
+          maxlength="2000"
+          placeholder="e.g. Can a landlord deduct cleaning fees from a security deposit without providing an itemized statement?"
+        ></textarea>
+        <div class="input-meta">
+          <span id="char-count" class="char-count">0 / 2000</span>
+        </div>
+      </div>
+
+      <!-- Example questions -->
+      <div class="examples">
+        <span class="examples-label">Try:</span>
+        <button class="example-chip" data-q="Can a landlord deduct cleaning fees from a security deposit without an itemized statement?">Security Deposit</button>
+        <button class="example-chip" data-q="What rights do I have if my employer fires me without a valid reason?">Wrongful Termination</button>
+        <button class="example-chip" data-q="Can I use someone else's copyrighted image on my website for educational purposes?">Copyright Fair Use</button>
+        <button class="example-chip" data-q="What are the key clauses I should include in an NDA with a business partner?">NDA Clauses</button>
+        <button class="example-chip" data-q="What can I do if a company sold me a defective product and refuses to issue a refund?">Consumer Protection</button>
+      </div>
+
+      <button id="ask-btn" class="btn btn--primary" disabled>
+        <span id="ask-btn-text">Ask LegalBot</span>
+        <span id="ask-btn-spinner" class="spinner hidden"></span>
+      </button>
+    </section>
+
+    <!-- Progress indicator (visible during request) -->
+    <section id="progress-section" class="card progress-card hidden">
+      <div class="progress-steps">
+        <div class="progress-step" id="step-1">
+          <div class="step-dot step-dot--active"></div>
+          <span>🔍 Analyzing your question…</span>
+        </div>
+        <div class="progress-step" id="step-2">
+          <div class="step-dot"></div>
+          <span>📚 Searching legal library…</span>
+        </div>
+        <div class="progress-step" id="step-3">
+          <div class="step-dot"></div>
+          <span>✅ Reviewing and finalizing answer…</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Answer card (visible after response) -->
+    <section id="answer-section" class="card answer-card hidden">
+      <div class="answer-header">
+        <h2 class="card-title">Legal Guidance</h2>
+        <button id="copy-btn" class="btn btn--outline btn--sm">📋 Copy</button>
+      </div>
+
+      <div id="question-display" class="question-display"></div>
+
+      <div id="answer-content" class="answer-content"></div>
+
+      <div id="sources-section" class="sources-section hidden">
+        <h3 class="sources-title">📚 Sources Consulted</h3>
+        <ul id="sources-list" class="sources-list"></ul>
+      </div>
+
+      <div class="disclaimer" id="disclaimer-text"></div>
+
+      <button id="new-question-btn" class="btn btn--outline">Ask Another Question</button>
+    </section>
+
+    <!-- Error card -->
+    <section id="error-section" class="card error-card hidden">
+      <div class="error-icon">⚠️</div>
+      <h3 id="error-title" class="error-title">Something went wrong</h3>
+      <p id="error-message" class="error-message"></p>
+      <button id="retry-btn" class="btn btn--outline">Try Again</button>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer class="footer">
+    <p>
+      ⚖️ LegalBot is for <strong>educational purposes only</strong> and does not constitute legal advice.
+      Always consult a qualified attorney for legal matters.
+    </p>
+    <p class="footer-meta">
+      Powered by <strong>Agno Framework</strong> · <strong>Groq LLaMA 3.3</strong> · <strong>FastAPI</strong>
+    </p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

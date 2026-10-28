@@ -1,0 +1,1 @@
+# LegalBot application package
