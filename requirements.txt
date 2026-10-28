@@ -1,0 +1,37 @@
+# LegalBot — Multi-Agent Legal Assistant
+# Python Dependencies
+
+# Web Framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+
+# Agno Multi-Agent Framework
+agno==1.3.4
+
+# Groq LLM Provider
+groq==0.12.0
+
+# Streamlit Frontend
+streamlit==1.40.1
+
+# Data Validation
+pydantic==2.10.1
+pydantic-settings==2.6.1
+
+# Environment Variables
+python-dotenv==1.0.1
+
+# HTTP Client — pinned to 0.27.2 because httpx 0.28 removed the
+# `proxies` parameter that groq still passes. Upgrade only after
+# groq releases a fix for the proxies kwarg.
+httpx==0.27.2
+
+# Static File Serving
+aiofiles==24.1.0
+
+# Testing
+pytest==8.3.3
+pytest-asyncio==0.24.0
+
+# Utilities
+typing-extensions==4.12.2
